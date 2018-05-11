@@ -1,0 +1,13 @@
+core_plugin: docker-swarm
+service_discovery_plugin: docker-swarm
+service_discovery_auto: true
+load_balancer_plugin: docker-swarm
+load_balancer_auto: false
+vars:
+  front_work: "100"
+  front_cpu: "0.5"
+  front_mem: "300m"
+  back_work: "200"
+  back_cpu: "0.5"
+  back_mem: "300m"
+

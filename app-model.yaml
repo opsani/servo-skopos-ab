@@ -1,0 +1,47 @@
+doctype: com.datagridsys.doctype/skopos/model
+version: 1
+components:
+  front:
+    image: opsani/co-http:latest
+    provides:
+      ports: ["8080"]
+    uses:
+      back: {}
+    visual:
+      x: 350
+      "y": 60
+    args:
+    - call=back&busy=${front_work}
+    plugin:
+      docker-swarm:
+        cpu_reservation: ${front_cpu}
+        cpu_limit: ${front_cpu}
+        mem_reservation: ${front_mem}
+        mem_limit: ${front_mem}
+  back:
+    image: opsani/co-http:latest
+    provides:
+      ports: ["8080"]
+    visual:
+      x: 650
+      "y": 60
+    args:
+    - busy=${back_work}
+    plugin:
+      docker-swarm:
+        cpu_reservation: ${back_cpu}
+        cpu_limit: ${back_cpu}
+        mem_reservation: ${back_mem}
+        mem_limit: ${back_mem}
+gateways:
+  gw:
+    type: load_balancer
+    exposes:
+    - name: http
+      port: "80"
+      target_port: "8080"
+    target: [front]
+    visual:
+      x: 60
+      "y": 60
+
