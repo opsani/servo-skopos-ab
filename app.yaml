@@ -1,7 +1,4 @@
-# app1 - simple test app
-
-# nb: unless this file is called /app.yaml, ensure there is a symlink with
-#     that name (to fit the initial skopos driver requirement)
+# app - simple test app
 
 driver:
   skopos:
